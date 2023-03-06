@@ -1,11 +1,11 @@
 <launch>
   <arg name="name" default="camera" doc="The name of the camera"/>
   <arg name="frame_id" default="$(arg name)" doc="The frame id of the camera"/>
-  <arg name="ip" default="" doc="The IP for the camera to connect to"/>
+  <arg name="ip" default="169.254.95.15" doc="The IP for the camera to connect to"/>
   <arg name="guid" default="" doc="The GUID for the camera to connect to"/>
-  <arg name="camera_info_url" default="file://$(find avt_vimba_camera)/calibrations/calibration_example.yaml"/>
-  <arg name="acquisition_rate" default="10" doc="Camera framerate (Hz)"/>
-
+  <arg name="camera_info_url" default="file://$(find avt_vimba_camera)/calibrations/moleski_10242022.yaml"/>
+  <arg name="acquisition_rate" default="24" doc="Camera framerate (Hz)"/>
+  
   <include file="$(find avt_vimba_camera)/launch/mono_camera.launch">
     <arg name="name" value="$(arg name)"/>
     <arg name="frame_id" value="$(arg frame_id)"/>
@@ -14,10 +14,41 @@
     <arg name="camera_info_url" value="$(arg camera_info_url)"/>
     <arg name="acquisition_rate" value="$(arg acquisition_rate)"/>
 
+    <param name="trigger_source" value="FixedRate" />
+    <param name="acquisition_mode" value="Continuous" />
+
+        <!-- Exposure params  -->
+      <arg name="exposure" default="50000"/>
+    <arg name="exposure_auto" default="Continuous"/>
+    <arg name="exposure_auto_alg" default="FitRange"/>
+    <arg name="exposure_auto_tol" default="5"/>
+    <arg name="exposure_auto_max" default="50000"/>
+    <arg name="exposure_auto_min" default="50000"/>
+    <arg name="exposure_auto_outliers" default="50000"/>
+    <arg name="exposure_auto_rate" default="50000"/>
+    <arg name="exposure_auto_target" default="50000"/>
+
+    <param name="gain" value="0" />
+    <arg name="gain_auto_target" default="22"/>
+    <param name="exposure_auto" value="Continuous" />
+    <param name="gain_auto" value="Continuous" />
+    <param name="whitebalance_auto" value="Continuous" />
+
+        <!-- Image params -->
+    <param name="binning_x" value="1" />
+    <param name="binning_y" value="1" />
+    <param name="decimation_x" value="1" />
+    <param name="decimation_y" value="1" />
+    <param name="x_offset" value="8" />
+    <param name="y_offset" value="9" />
+    <param name="width"  value="$(arg width)" />
+    <param name="height" value="$(arg height)" />
+
     <!-- Params specific to Mako G-319 -->
     <arg name="pixel_format" value="BayerRG8"/>
     <arg name="width" value="2064"/>
     <arg name="height" value="1544"/>
+    <!-- <arg name="stream_bytes_per_second" value="45000000"/> -->
     <arg name="stream_bytes_per_second" value="124000000"/>
   </include>
 </launch>

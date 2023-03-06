@@ -37,7 +37,7 @@
   <arg name="gain" default="0"/>
   <arg name="gain_auto" default="Continuous"/>
   <arg name="gain_auto_adjust_tol" default="5"/>
-  <arg name="gain_auto_max" default="32"/>
+  <arg name="gain_auto_max" default="200"/>
   <arg name="gain_auto_min" default="0"/>
   <arg name="gain_auto_outliers" default="0"/>
   <arg name="gain_auto_rate" default="50"/>

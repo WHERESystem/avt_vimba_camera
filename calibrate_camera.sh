@@ -1,0 +1,1 @@
+rosrun camera_calibration cameracalibrator.py  --disable_calib_cb_fast_check --size 10x7 --square 0.60 image:=/camera/image_raw camera:=/camera
